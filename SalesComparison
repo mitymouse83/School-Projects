@@ -190,3 +190,29 @@ public class SalesComparison {
         Table.CompTable();
     }
 }
+
+package salescomparison;
+
+public class Table {
+    
+   public void CompTable() {
+
+       //  Prints out the purpose of the table 
+       System.out.println("Potentail Annual Compensation is: ");
+
+        double Sales = 100000;  //  Sets the sales target at 100,000
+        double Max = Sales * 1.5;  //Sets the loop to show the sales bonus up to 50% above the sales target
+
+        while (Sales <= Max) {  //  Makes the while loop to begin at the sales target and end at 50% about the target sales
+
+            double Incentive = Sales * 0.0125;  //  The incentive of 1.25% set to progress properly
+
+            //  Prints the table showing the incentive rates up to 50% above the target sales of $100,000
+            System.out.println("For: $" + Sales + " The incentive is: $" + Incentive);
+
+            //  Sets the sales incentive to increase in $5000 incriments
+            Sales = Sales + 5000;
+        }
+    }
+
+}
