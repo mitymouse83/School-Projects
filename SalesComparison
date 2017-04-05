@@ -1,0 +1,192 @@
+package salescomparison;
+
+import java.util.Scanner;
+
+public class SalesComparison {
+
+    public static void main(String[] args) {
+
+        double Salary;
+        double Sales;
+        double Commission;
+        double Bonus;
+        double AnnualCompensation;
+        Salary = 50000;
+
+        String[] SalesPerson = new String[2]; //Creates an array that uses a string
+        int[] AnnualSales = new int[2];  //Creates an array that uses an integer
+
+        Scanner input = new Scanner(System.in);
+        
+        //  Asks the user to input the first sales person's name
+        System.out.println("What's the First Sales Person's Name?");
+        SalesPerson[0] = input.nextLine();
+
+        //  Asks the user to input the second sales person's name
+        System.out.println("What's the Second Sales Person's Name?");
+        SalesPerson[1] = input.nextLine();
+
+        //  Asks the user to input the first sales person's annual sales
+        System.out.println("What's the First Sales Person's Annual Sales?");
+        AnnualSales[0] = input.nextInt();
+
+        //  Asks the user to input the second sales person's annual sales
+        System.out.println("What's the Second Sales Person's Annual Sales?");
+        AnnualSales[1] = input.nextInt();
+
+        double Total;
+
+        //  Sets up the scenario for the program if the first salesman has lower sales that the second
+        if (AnnualSales[0] < AnnualSales[1]) {
+            //  Prints out the names of the first and second sales persons
+            System.out.println("\n" + SalesPerson[0] + "\t" + "\t" + SalesPerson[1]);
+
+            Total = (AnnualSales[1] - AnnualSales[0]);
+
+            //  Prints out the sales of both sales persons
+            System.out.println(AnnualSales[0] + "\t" + "\t" + AnnualSales[1]);
+
+            //  Prints out what the first salesman would need to sell to match the other
+            System.out.println(SalesPerson[0] + " needs to sell " + Total
+                    + " To equal the amount " + SalesPerson[1] + " Sold.");
+        }
+
+        //  Sets up the scenario for the program if the second salesman has lower sales that the first
+        if (AnnualSales[1] < AnnualSales[0]) {
+            //  Prints out the names of the first and second sales persons
+            System.out.println("\n" + SalesPerson[0] + "\t" + "\t" + SalesPerson[1]);
+
+            Total = (AnnualSales[0] - AnnualSales[1]);
+
+            //  Prints out the sales of both sales persons
+            System.out.println(AnnualSales[0] + "\t" + "\t" + AnnualSales[1]);
+
+            //  Prints out what the second salesman would need to sell to match the other
+            System.out.println(SalesPerson[1] + " needs to sell " + Total
+                    + " To equal the amount " + SalesPerson[0] + " Sold.");
+        } 
+        else  
+        {
+            //  Sets up a scenario if the sales are equal between salesman 1 and 2
+            if (AnnualSales[0] == AnnualSales[1]) {
+                //  Prings out the names of both salesman
+                System.out.println("\n" + SalesPerson[0] + "\t" + "\t" + SalesPerson[1]);
+
+                //  Prints out the annual sales of both salesman
+                System.out.println(AnnualSales[0] + "\t" + "\t" + AnnualSales[1]
+                        + "\n" + SalesPerson[0] + " & " + SalesPerson[1] + " Sold the same amount.");
+
+            }
+        }
+        if (AnnualSales[0] >= 80000) {  //  Runs if the sales are equal to or over 80,000
+            Commission = (AnnualSales[0] * .1);  //  If the sales are 80,000 or more there is a 10% commission
+
+            //  Prints out the total commission of the first salesman
+            System.out.println(SalesPerson[0] + "'s total commission is: $" + Commission);
+
+            if (AnnualSales[0] > 100000) {  //  Runs if the sales are equal to or over 100,000
+
+                //  The additional bonus kicks in at 100,000 that adds 1.25% bonus commission
+                Bonus = (AnnualSales[0] * .0125);
+
+                //  Runs if the sales are 100,000 or more 
+                System.out.println(SalesPerson[0] + " reached the sales target of " + "$100,000");
+
+                //  The total compensation that includes the salary, commission, and added bonus
+                AnnualCompensation = (Bonus + Commission + Salary);
+
+                //  Prints out to total compensation for the first salesman
+                System.out.println("The total annual compensation for " + SalesPerson[0]
+                        + " is: $" + AnnualCompensation);
+
+            } 
+            else  //  If the first salesman didn't meet the sales target
+            {
+
+                //  Prints out if the salesman didn't reach the sales target for a bonus
+                System.out.println(SalesPerson[0] + " didn't meet the sales target "
+                        + "& doesn't get a bonus.");
+
+                //  The compensation that doesn't include a bonus
+                AnnualCompensation = (Salary + Commission);
+
+                //  Prints out the compensation without a bonus
+                System.out.println("The total annual compensation for " + SalesPerson[0]
+                        + " is: $" + AnnualCompensation);
+            }
+
+        } 
+        else  //  If the salesman doesn't sell enough for a commission or a bonus
+        {
+
+            //  Prints out if the salesman didn't reach 80% of the sales target and doesn't get a commission or bonus
+            System.out.println(SalesPerson[0] + " didn't meet 80% of Sales Target "
+                    + "so there is no extra commission or bonus. ");
+
+            //  Only the base salary of 50000 without extra commissions or bonuses
+            AnnualCompensation = Salary;
+
+            //  Prints out the commission for the salesman without additial commission or bonus
+            System.out.println("The total annual compensation for " + SalesPerson[0]
+                    + " is: $" + AnnualCompensation);
+
+        }
+
+        if (AnnualSales[1] >= 80000) {  //  Runs if the sales are equal to or over 80,000
+            Commission = (AnnualSales[1] * .1);  //  If the sales are 80,000 or more there is a 10% commission
+
+            //  Prints out the total commission of the second salesman
+            System.out.println(SalesPerson[1] + "'s total commission is: $" + Commission);
+
+            if (AnnualSales[1] > 100000) {  //  Runs if the sales are equal to or over 100,000
+
+                //  The additional bonus kicks in at 100,000 that adds 1.25% bonus commission
+                Bonus = (AnnualSales[1] * .0125);
+
+                //  Runs if the sales are 100,000 or more 
+                System.out.println(SalesPerson[1] + " reached the sales target of " + "$100,000");
+
+                //  The total compensation that includes the salary, commission, and added bonus
+                AnnualCompensation = (Bonus + Commission + Salary);
+
+                //  Prints out to total compensation for the second salesman
+                System.out.println("The total annual compensation for " + SalesPerson[1]
+                        + " is: $" + AnnualCompensation);
+
+            } 
+            else  //  If the second salesman didn't meet the sales target
+            {
+
+                //  Prints out if the salesman didn't reach the sales target for a bonus
+                System.out.println(SalesPerson[1] + " didn't meet the sales target "
+                        + "& doesn't get a bonus.");
+
+                //  The compensation that doesn't include a bonus
+                AnnualCompensation = (Salary + Commission);
+
+                //  Prints out the compensation without a bonus
+                System.out.println("The total annual compensation for " + SalesPerson[1]
+                        + " is: $" + AnnualCompensation);
+            }
+
+        } 
+        else  //  If the salesman doesn't sell enough for a commission or a bonus
+        {
+
+            //  Prints out if the salesman didn't reach 80% of the sales target and doesn't get a commission or bonus
+            System.out.println(SalesPerson[1] + " didn't meet 80% of Sales Target "
+                    + "so there is no extra commission or bonus. ");
+
+            //  Only the base salary of 50000 without extra commissions or bonuses
+            AnnualCompensation = Salary;
+
+            //  Prints out the commission for the salesman without additial commission or bonus
+            System.out.println("The total annual compensation for " + SalesPerson[1]
+                    + " is: $" + AnnualCompensation);
+
+        }
+
+        Table Table = new Table();
+        Table.CompTable();
+    }
+}
