@@ -1,0 +1,200 @@
+package animalarray;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Iterator;
+
+public class AnimalArray {
+
+    static Scanner input = new Scanner(System.in);
+
+    static ArrayList<Animal> animalList = new ArrayList<>();
+
+    public static void main(String agrs[]) {
+        while (true) { 
+            System.out.println("Select an option from the list to add, edit, or delete animals from the library:\n");
+            System.out.println("An example of an animal type, color, and feature would be: Bear, Brown, Is a mammal\n");
+            System.out.println("Enter '1' New Animal");
+            System.out.println("Enter '2' Edit Animal");
+            System.out.println("Enter '3' Delete Animal");
+            System.out.println("Enter '4' List of the Animals");
+
+            int choice = input.nextInt();
+            input.nextLine(); 
+
+            switch (choice) {   
+                case 1:
+                    addAnimal();
+                    break;
+                case 2:
+                    editAnimal();
+                    break;
+                case 3:
+                    deleteAnimal();
+                    break;
+                case 4:
+                    listAllAnimals();
+                    break;
+                case 5:
+                    close();
+                    break;
+
+            }
+        }
+    }
+
+    public static void addAnimal() {
+
+        System.out.print("What type of animal is it?: ");
+        Animal animal = new Animal();
+        animal.setType(input.nextLine());
+
+        System.out.print("What color is the animal?: ");
+        animal.setColor(input.nextLine());
+
+        System.out.print("What is a main feature of the animal?: ");
+        animal.setFeature(input.nextLine());
+
+        animalList.add(animal);
+        System.out.println("Animal added; returning to main menu...");
+
+    }
+
+    public static void editAnimal() {
+
+        Scanner sc = new Scanner(System.in);
+
+        Iterator<Animal> it = animalList.iterator();
+        while (it.hasNext()) {
+            Animal animal = it.next();
+
+            System.out.println(animal.getID() + " " + animal.getType());
+        }
+
+        System.out.println();
+        System.out.print("Choose an animal ID#: ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        it = animalList.iterator();
+        while (it.hasNext()) {
+
+            Animal animal = it.next();
+
+            if (animal.getID() == choice) {
+
+                System.out.println("You selected the " + animal.getType() + " Animal");
+
+                System.out.print("Enter new animal type: ");
+                animal.setType(input.nextLine());
+
+                System.out.print("Enter animal color: ");
+                animal.setColor(input.nextLine());
+
+                System.out.print("Enter an animal feature: ");
+                animal.setFeature(input.nextLine());
+
+                System.out.println("Animal added; returning to main menu...");
+            } else {
+                System.out.println("The selected animal ID is not in the system; returning to main menu");
+            }
+        }
+    }
+
+    public static void deleteAnimal() {
+
+        Scanner sc = new Scanner(System.in);
+
+        Iterator<Animal> it = animalList.iterator();
+
+        while (it.hasNext()) {
+
+            Animal animal = it.next();
+            System.out.println(animal.getID() + " " + animal.getType());
+
+        }
+
+        System.out.println();
+        System.out.print("Choose an animal ID#: ");
+
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        it = animalList.iterator();
+
+        while (it.hasNext()) {
+
+            Animal animal = it.next();
+
+            if (animal.getID() == choice) {
+
+                System.out.println("You selected animal ID: " + animal.getType() );
+                animalList.remove(animal.getID());
+
+            } else {
+
+                System.out.println("The selected animal ID is not in the system; returning to main menu");
+            }
+
+        }
+
+    }
+
+    public static void close() {
+        System.exit(0);
+
+    }
+
+    public static void listAllAnimals() {
+
+        for (Iterator<Animal> it = animalList.iterator(); it.hasNext();) {
+            Animal animal = it.next();
+            System.out.println("Animal: " + animal.getID() + " - " +  animal.getType()
+                    + ", " + animal.getColor() + ", " + animal.getFeature() + "\n" );
+            
+        }
+    }
+
+}
+
+package animalarray;
+
+public class Animal {
+    
+    protected static int numberAnimals = 0;
+    protected int ID;
+    protected String type;
+    protected String color;
+    protected String feature;
+    
+    
+    public Animal() {
+        ID = ++numberAnimals;
+    }
+
+    public int getID() {
+        return ID;
+    }
+    
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    public String getColor() {
+        return color;
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
+    
+    public String getFeature() {
+        return feature;
+    }
+    public void setFeature(String feature) {
+        this.feature = feature;
+    }    
+    
+}
