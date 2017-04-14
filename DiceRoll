@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace DiceSim2
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            Random randNum = new Random();
+            Thread.Sleep(25);
+            Random randNum2 = new Random();
+            int rollNum = 1;
+            int count1 = 0;
+            int count2 = 0;
+            List<die> dice1 = new List<die>();
+            List<die> dice2 = new List<die>();
+
+
+            for (rollNum = 1; rollNum < 31; rollNum++)
+            {
+                dice1.Add(new die() { die1 = randNum.Next(1, 7), die2 = randNum.Next(1, 7) });
+                dice2.Add(new die() { die1 = randNum2.Next(1, 7), die2 = randNum.Next(1, 7) });
+            }
+            Console.WriteLine("List 1");
+            foreach (die diceset1 in dice1)
+            {
+                Console.WriteLine(diceset1.die1 + ", " + diceset1.die2);
+                count1 = count1 + diceset1.die1 + diceset1.die2;
+            }
+
+            Console.ReadKey();
+            Console.WriteLine("\rTotal: " + count1 + "\r\rList 2");
+            foreach (die diceset2 in dice1)
+            {
+                Console.WriteLine(diceset2.die1 + ", " + diceset2.die2);
+                count2 = count2 + diceset2.die1 + diceset2.die2;
+            }
+
+            var dice1distinct = dice1.Distinct();
+            var dice2distinct = dice2.Distinct();
+            Console.WriteLine("Total: " + count2);
+            Console.ReadKey();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DiceSim2
+{    
+        class die : IEquatable<die>
+    { 
+        public int die1 { get; set; }
+        public int die2 { get; set; }
+        public bool Equals(die other)
+        {
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            else
+            {
+                if (die1 == other.die1 && die2 == die2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        public override int GetHashCode()
+        {
+            return die1.GetHashCode() ^ die2.GetHashCode();
+        }
+    }
+}
